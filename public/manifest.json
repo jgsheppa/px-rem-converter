@@ -1,0 +1,13 @@
+{
+  "manifest_version": 2,
+  "name": "Avisio ROI Calculator",
+  "author": "Avisio",
+  "version": "1.0.0",
+  "description": "A way to calculate your return on investment using Avisio",
+  "icons": { "48": "avisio.png", "96": "avisio.png" },
+  "background": {
+    "scripts": ["./background.js"]
+  },
+  "permissions": ["tabs"],
+  "browser_action": {}
+}
