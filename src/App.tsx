@@ -1,11 +1,50 @@
 import './App.css';
 import Container from './components/_common/Container';
-import SectionHeading from './components/_common/SectionHeading';
+import Header from './components/_common/Header';
+
+import { shared } from './components/styled';
+import { useState } from 'react';
 
 function App() {
+  const [rem, setRem] = useState('1');
+  const [pixels, setPixels] = useState('16');
+
+  const pixelsToRem = (px: string) => {
+    if (!px) {
+      setRem('0');
+      setPixels('0');
+    } else if (pixels === '0') {
+      setPixels(px[1]);
+      const pxToFloat = parseFloat(px);
+      const newRemValue = pxToFloat / 16;
+      setRem(newRemValue.toString());
+    } else {
+      setPixels(px);
+      const pxToFloat = parseFloat(px);
+      const newRemValue = pxToFloat / 16;
+      setRem(newRemValue.toString());
+    }
+  };
+
+  const remToPixels = (rm: string) => {
+    if (!rm) {
+      setRem('0');
+      setPixels('0');
+    } else if (rem === '0') {
+      setRem(rm[1]);
+      const rmToFloat = parseFloat(rm);
+      const newRemValue = rmToFloat * 16;
+      setPixels(newRemValue.toString());
+    } else {
+      setRem(rm);
+      const rmToFloat = parseFloat(rm);
+      const newRemValue = rmToFloat * 16;
+      setPixels(newRemValue.toString());
+    }
+  };
   return (
     <Container
-      backgroundColor="grey"
+      backgroundColor={shared.colors.blue.lightRoyal}
       justify="center"
       align="center"
       height="100vh"
@@ -14,7 +53,7 @@ function App() {
       direction="column"
     >
       <Container
-        backgroundColor="yellow"
+        backgroundColor="white"
         justify="center"
         align="center"
         padding="1.5rem"
@@ -22,9 +61,7 @@ function App() {
         maxWidth="100%"
         width="100vw"
       >
-        <SectionHeading h1={true}>
-          Calculate your Return on Investment with Avisio
-        </SectionHeading>
+        <Header></Header>
       </Container>
       <Container
         direction="row"
@@ -46,7 +83,18 @@ function App() {
             direction="column"
             height="70%"
           >
-            <div>Hoteleigenschaften</div>
+            <h2>Pixel {'<---->'} Rem</h2>
+
+            <label>Rem</label>
+            <input
+              value={rem}
+              onChange={(e) => remToPixels(e.target.value)}
+            ></input>
+            <label>Px</label>
+            <input
+              value={pixels}
+              onChange={(e) => pixelsToRem(e.target.value)}
+            ></input>
           </Container>
           <Container
             backgroundColor="green"
@@ -58,7 +106,7 @@ function App() {
           </Container>
         </Container>
         <Container
-          backgroundColor="purple"
+          backgroundColor="white"
           width="70%"
           direction="column"
           height="100%"
@@ -68,7 +116,7 @@ function App() {
       </Container>
       <button
         onClick={() =>
-          chrome.tabs.create({ url: chrome.extension.getURL('popup.html') })
+          chrome.tabs.create({ url: chrome.extension.getURL('index.html') })
         }
       >
         Click Me
