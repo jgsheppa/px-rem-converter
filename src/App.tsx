@@ -1,9 +1,11 @@
-import './App.css';
 import Container from './components/_common/Container';
 import Header from './components/_common/Header';
 
+import { ReactComponent as Logo } from './assets/images/logo.svg';
+
 import { shared } from './components/styled';
 import { useState } from 'react';
+import CommonButton from './components/_common/Button';
 
 function App() {
   const [rem, setRem] = useState('1');
@@ -59,7 +61,7 @@ function App() {
   const handlePixelsToRemMargin = (px: string) => {
     const convertToFloats = px
       .split(' ')
-      .filter((value) => value.includes('px'))
+      .filter((value) => value.includes('px') || value === '0')
       .map((value) => {
         value.replace('px', '');
         return handlePxToRemConversion(value).concat('rem');
@@ -80,7 +82,7 @@ function App() {
 
   return (
     <Container
-      backgroundColor={shared.colors.blue.lightRoyal}
+      backgroundColor="var(--color-foreground)"
       justify="center"
       align="center"
       height="100vh"
@@ -89,7 +91,7 @@ function App() {
       direction="column"
     >
       <Container
-        backgroundColor="white"
+        backgroundColor={`var(--color-foreground)`}
         justify="center"
         align="center"
         padding="1.5rem"
@@ -100,15 +102,18 @@ function App() {
         <Header></Header>
       </Container>
       <Container
-        direction="row"
+        direction="column"
         maxHeight="100vh"
         height="100%"
         width="100%"
         padding="2rem 5rem"
         justify="center"
+        align="center"
       >
         <Container
           direction="column"
+          justify="center"
+          align="center"
           maxHeight="100rem"
           height="100%"
           width="30%"
@@ -117,9 +122,21 @@ function App() {
             backgroundColor="white"
             width="100%"
             direction="column"
+            align="flex-start"
+            justify="space-between"
             height="70%"
+            padding="2rem"
           >
-            <h2>Pixel {'<---->'} Rem</h2>
+            <Container
+              direction="row"
+              align="center"
+              justify="space-between"
+              height="4rem"
+              padding="0.5rem"
+              width="100%"
+            >
+              <p>Pixel</p> <Logo width="24" height="24" /> <p>Rem</p>
+            </Container>
 
             <label>Rem</label>
             <input
@@ -131,17 +148,39 @@ function App() {
               value={pixels}
               onChange={(e) => pixelsToRem(e.target.value)}
             ></input>
+            <button
+              onClick={() => navigator.clipboard.writeText(marginConversion)}
+            >
+              {`${rem}rem`}
+            </button>
+            <button
+              onClick={() => navigator.clipboard.writeText(marginConversion)}
+            >
+              {`${pixels}px`}
+            </button>
           </Container>
         </Container>
         <Container
           backgroundColor="white"
-          width="70%"
+          width="30%"
           direction="column"
           height="100%"
+          padding="2rem"
         >
           <h2>Margin/Padding</h2>
-          <button onClick={() => setIsRem(true)}>Rem</button>
-          <button onClick={() => setIsRem(false)}>Px</button>
+          <CommonButton
+            backgroundColor={isRem ? 'green' : 'red'}
+            onClick={() => setIsRem(true)}
+          >
+            Rem
+          </CommonButton>
+          <CommonButton
+            backgroundColor={isRem ? 'red' : 'green'}
+            onClick={() => setIsRem(false)}
+          >
+            Px
+          </CommonButton>
+
           <form
             onSubmit={(e) => {
               e.preventDefault();
@@ -167,19 +206,15 @@ function App() {
                 ></input>
               </Container>
             )}
-
-            <button type="submit">Submit</button>
+            <CommonButton type="submit">Submit</CommonButton>
           </form>
-          <h3>{marginConversion}</h3>
+          <button
+            onClick={() => navigator.clipboard.writeText(marginConversion)}
+          >
+            {marginConversion}
+          </button>
         </Container>
       </Container>
-      <button
-        onClick={() =>
-          chrome.tabs.create({ url: chrome.extension.getURL('index.html') })
-        }
-      >
-        Click Me
-      </button>
     </Container>
   );
 }

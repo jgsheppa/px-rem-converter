@@ -1,10 +1,11 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
-export const HeaderContainer = styled.div`
+export const MainHeader = styled.header`
   position: fixed;
   height: 72px;
   width: 100%;
-  background-color: #fff;
+  background-color: var(--color-background);
+  border-bottom: #161b22 0.25rem solid;
   top: 0;
   left: 0;
   z-index: 1;

@@ -1,10 +1,15 @@
 {
   "manifest_version": 2,
-  "name": "Avisio ROI Calculator",
-  "author": "Avisio",
+  "name": "Px to Rem Converter",
+  "author": "James Sheppard",
   "version": "1.0.0",
-  "description": "A way to calculate your return on investment using Avisio",
-  "icons": { "48": "avisio.png", "96": "avisio.png" },
+  "description": "A px to rem converter for frontend developers",
+  "icons": {
+    "24": "/logos/logo-24.png",
+    "48": "/logos/logo-48.png",
+    "64": "/logos/logo-64.png",
+    "128": "/logos/logo-128.png"
+  },
   "background": {
     "scripts": ["./background.js"]
   },

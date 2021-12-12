@@ -5,8 +5,10 @@ import { shared } from '../../styled';
 import { Props } from './types';
 
 export const StyledButton = styled.button<Props>`
-  background-color: ${({ backgroundColor }) =>
-    backgroundColor || 'var(--color-approval)'};
+  ${({ theme }) => theme.button.default}
+  ${({ size, theme }) => theme.button.sizes[size]}
+  ${({ type, theme }) => type && theme.button.types[type]}
+  ${({ outline, theme }) => outline && theme.button.outlines[outline]}
   text-align: ${({ textAlign }) => textAlign || 'center'};
   padding: ${({ padding }) => padding || 'auto'};
   font-weight: ${({ fontWeight }) => fontWeight || 'initial'};
@@ -16,7 +18,6 @@ export const StyledButton = styled.button<Props>`
   display: ${({ inVisible }) => (inVisible ? 'none' : 'flex')};
   align-self: ${({ alignSelf }) => alignSelf || 'initial'};
   font-size: ${({ fontSize }) => fontSize || 'initial'};
-  cursor: pointer;
 
   ${(props) =>
     props.block &&
