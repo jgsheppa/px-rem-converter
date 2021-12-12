@@ -6,6 +6,8 @@ import { useMediaQuery } from 'react-responsive';
 import { ReactComponent as Logo } from '../../../assets/images/logo.svg';
 
 import Switch from '@mui/material/Switch';
+import CommonText from '../Text';
+import Container from '../Container';
 
 const Header = () => {
   const storedTheme =
@@ -15,9 +17,6 @@ const Header = () => {
       : 'light');
   if (storedTheme)
     document.documentElement.setAttribute('data-theme', storedTheme);
-
-  const local = localStorage.getItem('theme');
-  console.log('LOCAL', local);
 
   const [isDark, setIsDark] = useState<boolean>(
     storedTheme === 'dark' ? true : false,
@@ -32,7 +31,6 @@ const Header = () => {
   );
 
   useEffect(() => {
-    let currentTheme = document.documentElement.getAttribute('data-theme');
     if (isDark) {
       document.documentElement.setAttribute('data-theme', 'dark');
       localStorage.setItem('theme', 'dark');
@@ -45,14 +43,38 @@ const Header = () => {
   return (
     <MainHeader>
       <HeaderInnerContainer>
-        <Logo width="4rem" height="4rem" />
-        <p>Wandlung</p>
-        <Switch
-          className="dark-mode-toggle"
-          checked={isDark}
-          onChange={({ target }) => setIsDark(target.checked)}
-          aria-label="Dark mode toggle"
-        ></Switch>
+        <Container
+          backgroundColor="var(--color-header)"
+          direction="row"
+          align="center"
+          justify="space-between"
+          maxWidth="12rem"
+          width="100%"
+        >
+          <Logo width="4rem" height="4rem" />
+          <CommonText fontSize="2rem" fontWeight="700" color="#ffffff">
+            Px/Rem
+          </CommonText>
+        </Container>
+        <Container
+          backgroundColor="var(--color-header)"
+          direction="row"
+          align="center"
+          justify="space-between"
+          maxWidth="10rem"
+          width="100%"
+        >
+          <Switch
+            color="warning"
+            className="dark-mode-toggle"
+            checked={isDark}
+            onChange={({ target }) => setIsDark(target.checked)}
+            aria-label="Dark mode toggle"
+          ></Switch>
+          <CommonText fontSize="1rem" fontWeight="600" color="#ffffff">
+            Night theme
+          </CommonText>
+        </Container>
       </HeaderInnerContainer>
     </MainHeader>
   );

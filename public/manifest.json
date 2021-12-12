@@ -1,6 +1,6 @@
 {
   "manifest_version": 2,
-  "name": "Px to Rem Converter",
+  "name": "Px/Rem",
   "author": "James Sheppard",
   "version": "1.0.0",
   "description": "A px to rem converter for frontend developers",

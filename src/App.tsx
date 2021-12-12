@@ -1,11 +1,12 @@
 import Container from './components/_common/Container';
 import Header from './components/_common/Header';
 
-import { ReactComponent as Logo } from './assets/images/logo.svg';
+import { ReactComponent as Clipboard } from './assets/images/clipboard.svg';
 
-import { shared } from './components/styled';
 import { useState } from 'react';
 import CommonButton from './components/_common/Button';
+import CommonText from './components/_common/Text';
+import SectionHeading from './components/SectionHeading';
 
 function App() {
   const [rem, setRem] = useState('1');
@@ -82,7 +83,7 @@ function App() {
 
   return (
     <Container
-      backgroundColor="var(--color-foreground)"
+      backgroundColor="var(--color-background)"
       justify="center"
       align="center"
       height="100vh"
@@ -91,7 +92,7 @@ function App() {
       direction="column"
     >
       <Container
-        backgroundColor={`var(--color-foreground)`}
+        backgroundColor="var(--color-background)"
         justify="center"
         align="center"
         padding="1.5rem"
@@ -102,6 +103,7 @@ function App() {
         <Header></Header>
       </Container>
       <Container
+        backgroundColor="var(--color-background)"
         direction="column"
         maxHeight="100vh"
         height="100%"
@@ -114,18 +116,18 @@ function App() {
           direction="column"
           justify="center"
           align="center"
-          maxHeight="100rem"
+          maxHeight="50rem"
           height="100%"
-          width="30%"
+          width="50%"
         >
           <Container
-            backgroundColor="white"
             width="100%"
             direction="column"
             align="flex-start"
             justify="space-between"
-            height="70%"
+            height="60%"
             padding="2rem"
+            margin="2rem 0"
           >
             <Container
               direction="row"
@@ -135,7 +137,7 @@ function App() {
               padding="0.5rem"
               width="100%"
             >
-              <p>Pixel</p> <Logo width="24" height="24" /> <p>Rem</p>
+              <SectionHeading h2={true}>Pixel to Rem</SectionHeading>
             </Container>
 
             <label>Rem</label>
@@ -160,22 +162,24 @@ function App() {
             </button>
           </Container>
         </Container>
-        <Container
-          backgroundColor="white"
-          width="30%"
-          direction="column"
-          height="100%"
-          padding="2rem"
-        >
-          <h2>Margin/Padding</h2>
+        <Container width="30%" direction="column" height="100%" padding="2rem">
+          <SectionHeading h2={true}>Margin and Padding</SectionHeading>
           <CommonButton
-            backgroundColor={isRem ? 'green' : 'red'}
+            padding="0.5rem 1rem"
+            width="fit-content"
+            backgroundColor={
+              isRem ? 'var(--color-approval)' : 'var(--color-denial)'
+            }
             onClick={() => setIsRem(true)}
           >
             Rem
           </CommonButton>
           <CommonButton
-            backgroundColor={isRem ? 'red' : 'green'}
+            padding="0.5rem 1rem"
+            width="fit-content"
+            backgroundColor={
+              isRem ? 'var(--color-denial)' : 'var(--color-approval)'
+            }
             onClick={() => setIsRem(false)}
           >
             Px
@@ -208,11 +212,15 @@ function App() {
             )}
             <CommonButton type="submit">Submit</CommonButton>
           </form>
-          <button
-            onClick={() => navigator.clipboard.writeText(marginConversion)}
-          >
-            {marginConversion}
-          </button>
+          <Container>
+            <CommonText>{marginConversion}</CommonText>
+            <CommonButton
+              color="transparent"
+              onClick={() => navigator.clipboard.writeText(marginConversion)}
+            >
+              <Clipboard />
+            </CommonButton>
+          </Container>
         </Container>
       </Container>
     </Container>

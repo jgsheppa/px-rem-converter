@@ -16,8 +16,7 @@ const Container = styled.div<ContainerProps>`
   position: ${(props) => props.position || 'initial'};
   height: ${(props) => props.height || 'auto'};
   padding: ${(props) => props.padding || 'initial'};
-  background-color: ${(props) =>
-    props.backgroundColor || 'var(--color-background)'};
+  background-color: ${(props) => props.backgroundColor || 'var(--color-panel)'};
   overflow: ${(props) => props.overflow || 'visible'};
   flex-wrap: ${(props) => props.flexWrap || 'nowrap'};
   min-width: ${(props) => props.minWidth || 'initial'};
