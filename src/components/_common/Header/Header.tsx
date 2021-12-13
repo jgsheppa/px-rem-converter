@@ -69,6 +69,10 @@ const Header = () => {
             className="dark-mode-toggle"
             checked={isDark}
             onChange={({ target }) => setIsDark(target.checked)}
+            onKeyPress={(e) => {
+              console.log(e.key);
+              if (e.key === 'Enter') setIsDark(!isDark);
+            }}
             aria-label="Dark mode toggle"
           ></Switch>
           <CommonText fontSize="1rem" fontWeight="600" color="#ffffff">

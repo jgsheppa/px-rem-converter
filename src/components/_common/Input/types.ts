@@ -50,5 +50,10 @@ export type InputProps = {
   format?: string;
   numberFormat?: boolean;
   mask?: string;
+  measurement?: string;
   decimalScale?: number;
+  borderRadius?: string;
+  buttonRadius?: string;
+  marginConversion?: string | undefined;
+  isMargin?: boolean;
 };

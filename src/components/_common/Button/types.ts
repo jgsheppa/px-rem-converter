@@ -32,4 +32,5 @@ export type Props = PropsWithChildren<any> & {
   fontSize?: string;
   submit?: string;
   backgroundColor?: string;
+  buttonRadius?: string;
 };

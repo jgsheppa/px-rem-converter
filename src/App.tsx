@@ -149,17 +149,13 @@ function App() {
               width="100%"
             >
               <Input
+                borderRadius="0.25rem 0 0 0.25rem"
+                buttonRadius="0 0.25rem 0.25rem 0"
                 inputLabel="Rem"
+                measurement={`${rem}rem`}
                 value={rem}
                 onChange={(e) => remToPixels(e.target.value)}
               ></Input>
-              <CommonButton
-                margin="none"
-                color="transparent"
-                onClick={() => navigator.clipboard.writeText(`${rem}rem`)}
-              >
-                <Clipboard />
-              </CommonButton>
             </Container>
             <Container
               direction="row"
@@ -169,17 +165,13 @@ function App() {
               width="100%"
             >
               <Input
+                borderRadius="0.25rem 0 0 0.25rem"
+                buttonRadius="0 0.25rem 0.25rem 0"
                 inputLabel="Pixels"
+                measurement={`${pixels}px`}
                 value={pixels}
                 onChange={(e) => pixelsToRem(e.target.value)}
               ></Input>
-              <CommonButton
-                margin="none"
-                color="transparent"
-                onClick={() => navigator.clipboard.writeText(`${pixels}px`)}
-              >
-                <Clipboard />
-              </CommonButton>
             </Container>
           </Container>
         </Container>
@@ -242,15 +234,13 @@ function App() {
             )}
             <CommonButton type="submit">Submit</CommonButton>
           </form>
-          <Container>
-            <CommonText>{marginConversion}</CommonText>
-            <CommonButton
-              color="transparent"
-              onClick={() => navigator.clipboard.writeText(marginConversion)}
-            >
-              <Clipboard />
-            </CommonButton>
-          </Container>
+          <Input
+            borderRadius="0.25rem 0 0 0.25rem"
+            buttonRadius="0 0.25rem 0.25rem 0"
+            isMargin={true}
+            marginConversion={marginConversion}
+            value={marginConversion}
+          ></Input>
         </Container>
       </Container>
     </Container>

@@ -5,9 +5,10 @@ import { InputProps } from './types';
 export const StyledInput = styled.input<InputProps>`
   width: ${({ width }) => width || '100%'};
   max-width: ${({ maxWidth }) => maxWidth};
+  font-size: 16px;
   height: ${({ height }) => height || '100%'};
-  border: solid 1px black;
-  border-radius: 4px;
+  border: solid 1px var(--color-approval);
+  border-radius: ${({ borderRadius }) => borderRadius || '0.25rem'};
   height: 2.5rem;
   line-height: 1.5rem;
   padding: 0.25rem 0.5rem;

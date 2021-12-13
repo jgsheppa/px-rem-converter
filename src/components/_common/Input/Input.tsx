@@ -1,6 +1,9 @@
 import React from 'react';
+import CommonButton from '../Button';
 
 import CommonLabel from '../Label/Label';
+
+import { ReactComponent as Clipboard } from '../../../assets/images/clipboard.svg';
 
 import {
   StyledInnerContainer,
@@ -8,11 +11,14 @@ import {
   StyledInput,
 } from './styles';
 import { InputProps } from './types';
+import Container from '../Container';
 
 const Input: React.FC<InputProps> = ({
   icon,
   barcodeIcon,
   inputContainerStyles,
+  marginConversion,
+  buttonRadius,
   multiline,
   inputLabel,
   marginTop,
@@ -39,12 +45,16 @@ const Input: React.FC<InputProps> = ({
   mask,
   decimalScale,
   value,
+  measurement,
+  borderRadius,
+  isMargin,
   ...rest
 }) => {
   const inputProps: InputProps = {
     icon,
     errors,
     noIconErrorMargin,
+    borderRadius,
     marginLeft,
     marginRight,
     padding,
@@ -85,7 +95,37 @@ const Input: React.FC<InputProps> = ({
           >
             {label}
           </CommonLabel>
-          <StyledInput value={value} {...rest}></StyledInput>
+          <Container direction="row" width="fit-content" height="auto">
+            <StyledInput
+              borderRadius={borderRadius}
+              value={value}
+              {...rest}
+            ></StyledInput>
+            {measurement && (
+              <CommonButton
+                buttonRadius={buttonRadius}
+                margin="none"
+                color="transparent"
+                onClick={() => navigator.clipboard.writeText(measurement)}
+              >
+                <Clipboard />
+              </CommonButton>
+            )}
+            {isMargin && (
+              <CommonButton
+                buttonRadius={buttonRadius}
+                margin="none"
+                color="transparent"
+                disabled={marginConversion}
+                onClick={() => {
+                  if (marginConversion)
+                    navigator.clipboard.writeText(marginConversion);
+                }}
+              >
+                <Clipboard />
+              </CommonButton>
+            )}
+          </Container>
         </StyledInnerContainer>
       </StyledInputContainer>
     </>

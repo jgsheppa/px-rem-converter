@@ -16,9 +16,22 @@ export const StyledButton = styled.button<Props>`
   align-self: ${({ alignSelf }) => alignSelf || 'initial'};
   font-size: ${({ fontSize }) => fontSize || '.875rem'};
   border: none;
-  border-radius: 0.25rem;
+  border-radius: ${({ buttonRadius }) => buttonRadius || '0.25rem'};
   font-weight: 600;
   font: inherit;
   cursor: pointer;
   outline: inherit;
+
+  &:hover {
+    opacity: 0.8;
+  }
+
+  &:focus {
+    border: solid 0.2rem var(--color-denial);
+  }
+
+  &:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+  }
 `;
