@@ -7,6 +7,7 @@ import { useState } from 'react';
 import CommonButton from './components/_common/Button';
 import CommonText from './components/_common/Text';
 import SectionHeading from './components/SectionHeading';
+import Input from './components/_common/Input';
 
 function App() {
   const [rem, setRem] = useState('1');
@@ -140,50 +141,79 @@ function App() {
               <SectionHeading h2={true}>Pixel to Rem</SectionHeading>
             </Container>
 
-            <label>Rem</label>
-            <input
-              value={rem}
-              onChange={(e) => remToPixels(e.target.value)}
-            ></input>
-            <label>Px</label>
-            <input
-              value={pixels}
-              onChange={(e) => pixelsToRem(e.target.value)}
-            ></input>
-            <button
-              onClick={() => navigator.clipboard.writeText(marginConversion)}
+            <Container
+              direction="row"
+              align="center"
+              justify="space-between"
+              height="4rem"
+              width="100%"
             >
-              {`${rem}rem`}
-            </button>
-            <button
-              onClick={() => navigator.clipboard.writeText(marginConversion)}
+              <Input
+                inputLabel="Rem"
+                value={rem}
+                onChange={(e) => remToPixels(e.target.value)}
+              ></Input>
+              <CommonButton
+                margin="none"
+                color="transparent"
+                onClick={() => navigator.clipboard.writeText(`${rem}rem`)}
+              >
+                <Clipboard />
+              </CommonButton>
+            </Container>
+            <Container
+              direction="row"
+              align="center"
+              justify="center"
+              height="auto"
+              width="100%"
             >
-              {`${pixels}px`}
-            </button>
+              <Input
+                inputLabel="Pixels"
+                value={pixels}
+                onChange={(e) => pixelsToRem(e.target.value)}
+              ></Input>
+              <CommonButton
+                margin="none"
+                color="transparent"
+                onClick={() => navigator.clipboard.writeText(`${pixels}px`)}
+              >
+                <Clipboard />
+              </CommonButton>
+            </Container>
           </Container>
         </Container>
         <Container width="30%" direction="column" height="100%" padding="2rem">
           <SectionHeading h2={true}>Margin and Padding</SectionHeading>
-          <CommonButton
-            padding="0.5rem 1rem"
-            width="fit-content"
-            backgroundColor={
-              isRem ? 'var(--color-approval)' : 'var(--color-denial)'
-            }
-            onClick={() => setIsRem(true)}
+          <Container
+            width="100%"
+            direction="row"
+            height="auto"
+            padding="2rem 0rem"
           >
-            Rem
-          </CommonButton>
-          <CommonButton
-            padding="0.5rem 1rem"
-            width="fit-content"
-            backgroundColor={
-              isRem ? 'var(--color-denial)' : 'var(--color-approval)'
-            }
-            onClick={() => setIsRem(false)}
-          >
-            Px
-          </CommonButton>
+            <CommonButton
+              padding="0.5rem 1rem"
+              width="fit-content"
+              backgroundColor={
+                isRem ? 'var(--color-approval)' : 'var(--color-denial)'
+              }
+              onClick={() => setIsRem(true)}
+            >
+              Rem
+            </CommonButton>
+            <CommonButton
+              padding="0.5rem 1rem"
+              width="fit-content"
+              align="center"
+              justify="flex-start"
+              backgroundColor={
+                isRem ? 'var(--color-denial)' : 'var(--color-approval)'
+              }
+              onClick={() => setIsRem(false)}
+            >
+              Px
+            </CommonButton>
+          </Container>
 
           <form
             onSubmit={(e) => {
@@ -195,19 +225,19 @@ function App() {
           >
             {isRem ? (
               <Container>
-                <label>Rem</label>
-                <input
+                <Input
+                  inputLabel="Rem"
                   value={marginRem}
                   onChange={(e) => setMarginRem(e.target.value)}
-                ></input>
+                ></Input>
               </Container>
             ) : (
               <Container>
-                <label>Px</label>
-                <input
+                <Input
+                  inputLabel="Px"
                   value={marginPixels}
                   onChange={(e) => setMarginPixels(e.target.value)}
-                ></input>
+                ></Input>
               </Container>
             )}
             <CommonButton type="submit">Submit</CommonButton>
