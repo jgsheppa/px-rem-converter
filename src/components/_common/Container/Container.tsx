@@ -5,6 +5,7 @@ import { ContainerProps } from './types';
 const Container = styled.div<ContainerProps>`
   display: flex;
   box-sizing: border-box;
+  border-radius: ${(props) => props.borderRadius || 'initial'};
   justify-content: ${(props) => props.justify || 'initial'};
   align-items: ${(props) => props.align || 'initial'};
   align-self: ${(props) => props.self || 'initial'};
@@ -22,6 +23,7 @@ const Container = styled.div<ContainerProps>`
   min-width: ${(props) => props.minWidth || 'initial'};
   min-height: ${(props) => props.minHeight || 'initial'};
   bottom: ${({ bottom }) => bottom || 'initial'};
+
   ${({ fullWidth }) =>
     fullWidth &&
     css`

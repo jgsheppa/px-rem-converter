@@ -48,6 +48,7 @@ const Input: React.FC<InputProps> = ({
   measurement,
   borderRadius,
   isMargin,
+  justify,
   ...rest
 }) => {
   const inputProps: InputProps = {
@@ -87,22 +88,27 @@ const Input: React.FC<InputProps> = ({
         marginBottom={marginBottom}
         maxWidth={maxWidth}
         flex={flex}
+        justify={justify}
       >
-        <StyledInnerContainer>
-          <CommonLabel
-            margin={largeLabel ? '1rem 0' : ''}
-            largerLabel={largeLabel}
-          >
-            {label}
-          </CommonLabel>
+        <StyledInnerContainer justify={justify}>
+          {label && (
+            <CommonLabel
+              margin={largeLabel ? '1rem 0' : ''}
+              largerLabel={largeLabel}
+            >
+              {label}
+            </CommonLabel>
+          )}
           <Container direction="row" width="fit-content" height="auto">
             <StyledInput
+              maxWidth={maxWidth}
               borderRadius={borderRadius}
               value={value}
               {...rest}
             ></StyledInput>
             {measurement && (
               <CommonButton
+                padding="0 1rem"
                 buttonRadius={buttonRadius}
                 margin="none"
                 color="transparent"
@@ -113,10 +119,11 @@ const Input: React.FC<InputProps> = ({
             )}
             {isMargin && (
               <CommonButton
+                padding="0 1rem"
                 buttonRadius={buttonRadius}
                 margin="none"
                 color="transparent"
-                disabled={marginConversion}
+                disabled={!marginConversion}
                 onClick={() => {
                   if (marginConversion)
                     navigator.clipboard.writeText(marginConversion);

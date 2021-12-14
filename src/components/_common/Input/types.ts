@@ -56,4 +56,5 @@ export type InputProps = {
   buttonRadius?: string;
   marginConversion?: string | undefined;
   isMargin?: boolean;
+  justify?: string;
 };

@@ -20,4 +20,5 @@ export interface ContainerProps {
   warning?: boolean;
   bottom?: string;
   minHeight?: string;
+  borderRadius?: string;
 }

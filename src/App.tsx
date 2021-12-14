@@ -107,35 +107,34 @@ function App() {
         backgroundColor="var(--color-background)"
         direction="column"
         maxHeight="100vh"
-        height="100%"
+        height="80%"
         width="100%"
         padding="2rem 5rem"
-        justify="center"
+        justify="flex-start"
         align="center"
       >
         <Container
           direction="column"
-          justify="center"
-          align="center"
-          maxHeight="50rem"
-          height="100%"
-          width="50%"
+          justify="flex-start"
+          align="space-between"
+          height="auto"
+          width="80%"
+          margin="1rem"
         >
           <Container
             width="100%"
             direction="column"
             align="flex-start"
             justify="space-between"
-            height="60%"
-            padding="2rem"
-            margin="2rem 0"
+            height="auto"
+            padding="2rem 2rem 4rem"
+            borderRadius="0.25rem"
           >
             <Container
               direction="row"
               align="center"
               justify="space-between"
               height="4rem"
-              padding="0.5rem"
               width="100%"
             >
               <SectionHeading h2={true}>Pixel to Rem</SectionHeading>
@@ -146,7 +145,8 @@ function App() {
               align="center"
               justify="space-between"
               height="4rem"
-              width="100%"
+              width="80%"
+              margin="1rem 0 0 "
             >
               <Input
                 borderRadius="0.25rem 0 0 0.25rem"
@@ -156,14 +156,6 @@ function App() {
                 value={rem}
                 onChange={(e) => remToPixels(e.target.value)}
               ></Input>
-            </Container>
-            <Container
-              direction="row"
-              align="center"
-              justify="center"
-              height="auto"
-              width="100%"
-            >
               <Input
                 borderRadius="0.25rem 0 0 0.25rem"
                 buttonRadius="0 0.25rem 0.25rem 0"
@@ -175,72 +167,117 @@ function App() {
             </Container>
           </Container>
         </Container>
-        <Container width="30%" direction="column" height="100%" padding="2rem">
+        <Container
+          borderRadius="0.25rem"
+          width="80%"
+          direction="column"
+          height="auto"
+          padding="2rem"
+          margin="1rem"
+        >
           <SectionHeading h2={true}>Margin and Padding</SectionHeading>
           <Container
-            width="100%"
+            width="15%"
             direction="row"
+            align="center"
+            justify="space-between"
             height="auto"
             padding="2rem 0rem"
           >
             <CommonButton
               padding="0.5rem 1rem"
               width="fit-content"
+              textAlign="center"
+              height="3rem"
+              margin="0"
               backgroundColor={
                 isRem ? 'var(--color-approval)' : 'var(--color-denial)'
               }
-              onClick={() => setIsRem(true)}
+              onClick={() => {
+                setMarginConversion('');
+                setIsRem(true);
+              }}
             >
               Rem
             </CommonButton>
             <CommonButton
               padding="0.5rem 1rem"
               width="fit-content"
+              margin="0"
+              textAlign="center"
+              height="3rem"
               align="center"
               justify="flex-start"
               backgroundColor={
                 isRem ? 'var(--color-denial)' : 'var(--color-approval)'
               }
-              onClick={() => setIsRem(false)}
+              onClick={() => {
+                setMarginConversion('');
+                setIsRem(false);
+              }}
             >
               Px
             </CommonButton>
           </Container>
-
-          <form
-            onSubmit={(e) => {
-              e.preventDefault();
-              return isRem
-                ? handleRemToPixelsMargin(marginRem)
-                : handlePixelsToRemMargin(marginPixels);
-            }}
+          <Container
+            direction="row"
+            align="flex-end"
+            justify="space-between"
+            width="80%"
           >
-            {isRem ? (
-              <Container>
-                <Input
-                  inputLabel="Rem"
-                  value={marginRem}
-                  onChange={(e) => setMarginRem(e.target.value)}
-                ></Input>
+            <form
+              style={{ width: '100%', maxWidth: '26rem' }}
+              onSubmit={(e) => {
+                e.preventDefault();
+                return isRem
+                  ? handleRemToPixelsMargin(marginRem)
+                  : handlePixelsToRemMargin(marginPixels);
+              }}
+            >
+              <Container
+                direction="row"
+                width="70%"
+                align="flex-end"
+                justify="space-between"
+                height="5.5rem"
+                maxWidth="24rem"
+              >
+                {isRem ? (
+                  <Input
+                    maxWidth="14rem"
+                    width="100%"
+                    inputLabel="Rem"
+                    value={marginRem}
+                    onChange={(e) => setMarginRem(e.target.value)}
+                  ></Input>
+                ) : (
+                  <Input
+                    maxWidth="14rem"
+                    width="100%"
+                    inputLabel="Px"
+                    value={marginPixels}
+                    onChange={(e) => setMarginPixels(e.target.value)}
+                  ></Input>
+                )}
+                <CommonButton
+                  padding="0.5rem 1rem"
+                  height="3.125rem"
+                  type="submit"
+                >
+                  Submit
+                </CommonButton>
               </Container>
-            ) : (
-              <Container>
-                <Input
-                  inputLabel="Px"
-                  value={marginPixels}
-                  onChange={(e) => setMarginPixels(e.target.value)}
-                ></Input>
-              </Container>
-            )}
-            <CommonButton type="submit">Submit</CommonButton>
-          </form>
-          <Input
-            borderRadius="0.25rem 0 0 0.25rem"
-            buttonRadius="0 0.25rem 0.25rem 0"
-            isMargin={true}
-            marginConversion={marginConversion}
-            value={marginConversion}
-          ></Input>
+            </form>
+            <Input
+              borderRadius="0.25rem 0 0 0.25rem"
+              buttonRadius="0 0.25rem 0.25rem 0"
+              justify="flex-end"
+              maxWidth="15rem"
+              isMargin={true}
+              marginConversion={marginConversion}
+              value={marginConversion}
+            ></Input>
+          </Container>
         </Container>
       </Container>
     </Container>
