@@ -1,11 +1,8 @@
 import Container from './components/_common/Container';
 import Header from './components/_common/Header';
 
-import { ReactComponent as Clipboard } from './assets/images/clipboard.svg';
-
 import { useState } from 'react';
 import CommonButton from './components/_common/Button';
-import CommonText from './components/_common/Text';
 import SectionHeading from './components/SectionHeading';
 import Input from './components/_common/Input';
 
