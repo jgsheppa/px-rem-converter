@@ -5,13 +5,13 @@
   "version": "1.0.0",
   "description": "A pixel to rem converter",
   "icons": {
-    "24": "./public/logos/logo-24.png",
-    "48": "./public//logos/logo-48.png",
-    "64": "./public//logos/logo-64.png",
-    "128": "./public//logos/logo-128.png"
+    "24": "./logos/logo-24.png",
+    "48": "./logos/logo-48.png",
+    "64": "./logos/logo-64.png",
+    "128": "./logos/logo-128.png"
   },
   "background": {
-    "scripts": ["./public/background.js"]
+    "scripts": ["./background.js"]
   },
   "permissions": ["tabs"],
   "browser_action": {}
