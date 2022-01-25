@@ -1,8 +1,6 @@
 import { useEffect, useState } from 'react';
 import { MainHeader, HeaderInnerContainer } from './styles';
 
-import { useMediaQuery } from 'react-responsive';
-
 import { ReactComponent as Logo } from '../../../assets/images/logo.svg';
 
 import Switch from '@mui/material/Switch';
@@ -20,14 +18,6 @@ const Header = () => {
 
   const [isDark, setIsDark] = useState<boolean>(
     storedTheme === 'dark' ? true : false,
-  );
-
-  const systemPrefersDark = useMediaQuery(
-    {
-      query: '(prefers-color-scheme: dark)',
-    },
-    undefined,
-    (isSystemDark: boolean) => setIsDark(isSystemDark),
   );
 
   useEffect(() => {

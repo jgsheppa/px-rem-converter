@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import { InputProps } from './types';
 
 export const StyledInput = styled.input<InputProps>`
-  width: ${({ width }) => width || '100%'};
+  width: ${({ width }) => width || '8rem'};
   max-width: ${({ maxWidth }) => maxWidth};
   font-size: 16px;
   height: ${({ height }) => height || '100%'};

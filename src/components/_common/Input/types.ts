@@ -33,7 +33,7 @@ export type InputProps = {
   inputContainerStyles?: CSSProperties;
   dropMargin?: boolean;
   inputLabel?: string | React.ReactElement;
-  marginTop?: boolean;
+  marginTop?: string;
   noIconErrorMargin?: boolean;
   marginLeft?: string;
   marginRight?: string;

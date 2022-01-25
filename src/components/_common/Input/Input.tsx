@@ -1,9 +1,10 @@
-import React from 'react';
+import React, { useState } from 'react';
 import CommonButton from '../Button';
 
 import CommonLabel from '../Label/Label';
 
 import { ReactComponent as Clipboard } from '../../../assets/images/clipboard.svg';
+import { ReactComponent as Checkmark } from '../../../assets/images/checkmark.svg';
 
 import {
   StyledInnerContainer,
@@ -49,35 +50,17 @@ const Input: React.FC<InputProps> = ({
   borderRadius,
   isMargin,
   justify,
+  minWidth,
   ...rest
 }) => {
-  const inputProps: InputProps = {
-    icon,
-    errors,
-    noIconErrorMargin,
-    borderRadius,
-    marginLeft,
-    marginRight,
-    padding,
-    type,
-    rightAligned,
-    largeLabel,
-    name,
-    errorMarginTop,
-    marginBottom,
-    placeholder,
-    flex,
-    maxWidth,
-    form,
-    format,
-    numberFormat,
-    mask,
-    decimalScale,
-    value,
-    ...rest,
-  };
-
   const label = required ? `${inputLabel}*` : inputLabel;
+
+  const [isCopied, setIsCopied] = useState<boolean>(false);
+
+  function handleCopy() {
+    setIsCopied(true);
+    setTimeout(() => setIsCopied(false), 2000);
+  }
 
   return (
     <>
@@ -89,6 +72,7 @@ const Input: React.FC<InputProps> = ({
         maxWidth={maxWidth}
         flex={flex}
         justify={justify}
+        minWidth={minWidth}
       >
         <StyledInnerContainer justify={justify}>
           {label && (
@@ -101,7 +85,6 @@ const Input: React.FC<InputProps> = ({
           )}
           <Container direction="row" width="fit-content" height="auto">
             <StyledInput
-              maxWidth={maxWidth}
               borderRadius={borderRadius}
               value={value}
               {...rest}
@@ -109,12 +92,16 @@ const Input: React.FC<InputProps> = ({
             {measurement && (
               <CommonButton
                 padding="0 1rem"
+                width="4rem"
                 buttonRadius={buttonRadius}
                 margin="none"
                 color="transparent"
-                onClick={() => navigator.clipboard.writeText(measurement)}
+                onClick={() => {
+                  navigator.clipboard.writeText(measurement);
+                  handleCopy();
+                }}
               >
-                <Clipboard />
+                {isCopied ? <Checkmark /> : <Clipboard />}
               </CommonButton>
             )}
             {isMargin && (
@@ -129,7 +116,7 @@ const Input: React.FC<InputProps> = ({
                     navigator.clipboard.writeText(marginConversion);
                 }}
               >
-                <Clipboard />
+                {isCopied ? <Checkmark /> : <Clipboard />}
               </CommonButton>
             )}
           </Container>
