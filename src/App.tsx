@@ -141,6 +141,7 @@ function App() {
               direction="row"
               align="center"
               justify="space-between"
+              flexWrap="wrap"
               height="4rem"
               width="80%"
               margin="1rem 0 0 "
