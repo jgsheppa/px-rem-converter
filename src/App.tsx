@@ -10,15 +10,17 @@ function App() {
   const [pixels, setPixels] = useState('16');
 
   const handlePxToRemConversion = (px: string): string => {
-    const pxToFloat = parseFloat(px);
+    const removePx = px.replace('px', '');
+    const pxToFloat = parseFloat(removePx);
     const newRemValue = pxToFloat / 16;
     return newRemValue.toString();
   };
 
-  const handleRemToPxConversion = (rm: string): string => {
-    const rmToFloat = parseFloat(rm);
-    const newRemValue = rmToFloat * 16;
-    return newRemValue.toString();
+  const handleRemToPxConversion = (rem: string): string => {
+    const removeRem = rem.replace('rem', '');
+    const remToFloat = parseFloat(removeRem);
+    const newPxValue = remToFloat * 16;
+    return newPxValue.toString();
   };
 
   const pixelsToRem = (px: string) => {

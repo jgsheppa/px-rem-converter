@@ -65,7 +65,11 @@ const Header = () => {
             }}
             aria-label="Dark mode toggle"
           ></Switch>
-          <CommonText fontSize="1rem" fontWeight="600" color="#ffffff">
+          <CommonText
+            fontSize="1rem"
+            fontWeight="600"
+            color={isDark ? '#ed6c02' : '#ffffff'}
+          >
             Night theme
           </CommonText>
         </Container>

@@ -88,7 +88,14 @@ const Input: React.FC<InputProps> = ({
               borderRadius={borderRadius}
               value={value}
               {...rest}
-            ></StyledInput>
+              onKeyDown={(e: any) => {
+                if (e.key === 'Enter' && measurement) {
+                  navigator.clipboard.writeText(measurement);
+                  handleCopy();
+                }
+              }}
+            />
+
             {measurement && (
               <CommonButton
                 padding="0 1rem"
@@ -96,6 +103,7 @@ const Input: React.FC<InputProps> = ({
                 buttonRadius={buttonRadius}
                 margin="none"
                 color="transparent"
+                onKeyDown={(e: any) => console.log('EEE', e.key)}
                 onClick={() => {
                   navigator.clipboard.writeText(measurement);
                   handleCopy();
