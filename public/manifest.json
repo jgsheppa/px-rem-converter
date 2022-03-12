@@ -2,7 +2,7 @@
   "manifest_version": 2,
   "name": "Px/Rem",
   "author": "James Sheppard",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "A pixel to rem converter",
   "icons": {
     "24": "./logos/logo-24.png",
@@ -10,9 +10,8 @@
     "64": "./logos/logo-64.png",
     "128": "./logos/logo-128.png"
   },
-  "background": {
-    "scripts": ["./background.js"]
-  },
   "permissions": ["tabs"],
-  "browser_action": {}
+  "browser_action": {
+    "default_popup": "index.html"
+  }
 }

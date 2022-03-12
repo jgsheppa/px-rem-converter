@@ -64,7 +64,7 @@ const Header = () => {
               if (e.key === 'Enter') setIsDark(!isDark);
             }}
             aria-label="Dark mode toggle"
-          ></Switch>
+          />
           <CommonText
             fontSize="1rem"
             fontWeight="600"

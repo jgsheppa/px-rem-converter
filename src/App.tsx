@@ -58,9 +58,8 @@ function App() {
       backgroundColor="var(--color-background)"
       justify="center"
       align="center"
-      height="100vh"
-      maxWidth="100%"
-      width="100vw"
+      height="32rem"
+      width="24rem"
       direction="column"
     >
       <Container
@@ -77,7 +76,6 @@ function App() {
       <Container
         backgroundColor="var(--color-background)"
         direction="column"
-        maxHeight="100vh"
         height="80%"
         width="100%"
         justify="flex-start"
